@@ -18,3 +18,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+/**
+ * Login
+ */
+
+ Route::get('/login', ['uses' => 'Controller@homepage']);
