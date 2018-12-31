@@ -179,6 +179,11 @@ return [
          * L5 repository
          */
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
+
+        /**
+         * LaravelCollective/html
+         */
+        Collective\Html\HtmlServiceProvider::class,
     ],
 
     /*
@@ -228,6 +233,11 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        /**
+         * LaravelCollective/html
+         */
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];

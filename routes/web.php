@@ -20,7 +20,8 @@ Route::get('/', function () {
 });
 
 /**
- * Login
+ * Rotas para autenticação do usuario
+ * Routes to user auth
  */
-
- Route::get('/login', ['uses' => 'Controller@homepage']);
+ Route::get('/login', ['uses' => 'Controller@fazerLogin']);
+ Route::post('/login', ['as' => 'user.login', 'uses' => 'Controller@Login']);
