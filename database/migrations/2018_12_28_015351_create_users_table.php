@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
 			//dados pessoais
 			//people data
 			$table->char('cpf', 11)->unique()->nullable();
-			$table->string('name', 50)->unique()->nullable(); //nome
+			$table->string('name', 50)->nullable(); //nome
 			$table->char('phone', 11); //telefone
 			$table->date('birth')->nullable(); //nascimento
 			$table->char('gender', 1)->nullable(); //gênero
