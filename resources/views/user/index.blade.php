@@ -12,12 +12,12 @@
     
     {!! Form::open(['method' => 'post', 'class' => 'form-padrao']) !!}
 
-        @include('templates.formulario.input', ['input' => 'cpf', 'attributes' => ['placeholder' => 'CPF']])
-        @include('templates.formulario.input', ['input' => 'name', 'attributes' => ['placeholder' => 'Nome']])
-        @include('templates.formulario.input', ['input' => 'phone', 'attributes' => ['placeholder' => 'Telefone']])
-        @include('templates.formulario.input', ['input' => 'email', 'attributes' => ['placeholder' => 'E-mail']])
-        @include('templates.formulario.password', ['input' => 'password', 'attributes' => ['placeholder' => 'senha']])
-        @include('templates.formulario.submit', ['input' => 'Cadastrar'])
+        @include('templates.formulario.input', ['class' => 'text', 'label' => 'CPF', 'input' => 'cpf', 'attributes' => ['placeholder' => 'CPF']])
+        @include('templates.formulario.input', ['class' => 'text', 'label' => 'Nome', 'input' => 'name', 'attributes' => ['placeholder' => 'Nome']])
+        @include('templates.formulario.input', ['class' => 'text', 'label' => 'Telefone', 'input' => 'phone', 'attributes' => ['placeholder' => 'Telefone']])
+        @include('templates.formulario.input', ['class' => 'text', 'label' => 'E-mail', 'input' => 'email', 'attributes' => ['placeholder' => 'E-mail']])
+        @include('templates.formulario.password', ['class' => 'password', 'label' => 'Senha', 'input' => 'password', 'attributes' => ['placeholder' => 'senha']])
+        @include('templates.formulario.submit', ['class' => 'submit', 'input' => 'Cadastrar'])
 
     {!! Form::close() !!}
 
