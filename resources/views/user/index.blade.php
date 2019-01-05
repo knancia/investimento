@@ -10,7 +10,7 @@
 
 @section('conteudo-view')
     
-    {!! Form::open(['method' => 'post', 'class' => 'form-padrao']) !!}
+    {!! Form::open(['route' => 'user.store', 'method' => 'post', 'class' => 'form-padrao']) !!}
 
         @include('templates.formulario.input', ['class' => 'text', 'label' => 'CPF', 'input' => 'cpf', 'attributes' => ['placeholder' => 'CPF']])
         @include('templates.formulario.input', ['class' => 'text', 'label' => 'Nome', 'input' => 'name', 'attributes' => ['placeholder' => 'Nome']])
