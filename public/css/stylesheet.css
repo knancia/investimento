@@ -152,7 +152,7 @@ section#conteudo-view form input[type='submit']
 */
 #view-conteudo
 {
-    position: fixed;
+    position: relative;
     float: left;
     width: 100%;
     height: 100%;
@@ -230,16 +230,25 @@ table.default-table
     font: 400 .9em 'Arial';
     text-align: center;
 }
-table.default-table thead
-{
-    text-transform: uppercase;
-    font-weight: 500;
-}
 table.default-table thead tr
 {
+    font-weight: bold;
+    background: #00ff9c;
     height: 40px;
 }
 table.default-table tbody tr
 {
     height: 30px;
+}
+table.default-table tbody tr:nth-child(even)
+{
+    background: #00ff9d2a;
+}
+table.default-table tbody tr:nth-child(odd)
+{
+    background: #00ff9d4f;
+}
+table.default-table tbody tr:hover
+{
+    background: #0d110f2a;
 }
