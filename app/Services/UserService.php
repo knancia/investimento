@@ -26,7 +26,7 @@ class UserService
             
             return[
                 'success'   => false,
-                'message'   => 'Erro de execução',
+                'messages'  => 'Usuario Cadastrado',
                 'data'      => $usuario,
             ];
         } 
@@ -34,7 +34,7 @@ class UserService
         {
             return[
                 'success'   => false,
-                'message'   => 'Erro de execução',
+                'messages'  => $e->getMessage(),
             ];
         }
     }

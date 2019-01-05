@@ -51,19 +51,15 @@ class UsersController extends Controller
     public function store(UserCreateRequest $request)
     {
         $request = $this->service->store($request->all());
-        
-        if($request['success']) // == true
-        {
-            $usuario = $request['data'];
-        }
-        else
-        {
-            $usuario = null;
-        }
-        
+        $usuario = $request['success'] ? $request['data'] : null;
+
+        session()->flash('success', [
+            'success'   => $request['success'],
+            'messages'  => $request['messages'],
+        ]);
+                
         return view('user.index', [
             'usuario' => $usuario,
-
         ]);
     }
 
