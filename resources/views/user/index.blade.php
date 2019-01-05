@@ -25,4 +25,34 @@
 
     {!! Form::close() !!}
 
+    <table class="default-table">
+
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>CPF</td>
+                <td>Nome</td>
+                <td>Telefone</td>
+                <td>Nascimento</td>
+                <td>E-mail</td>
+                <td>Status</td>
+                <td>Permissão</td>
+            </tr>
+        </thead>
+    
+        <tbody>
+            <tr>
+                <td>teta teta</td>
+                <td>teta teta</td>
+                <td>teta teta</td>
+                <td>teta teta</td>
+                <td>teta teta</td>
+                <td>teta teta</td>
+                <td>teta teta</td>
+                <td>teta teta</td>
+            </tr>
+        </tbody>
+        
+    </table>
+
 @endsection
