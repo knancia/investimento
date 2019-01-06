@@ -41,166 +41,18 @@
         </thead>
     
         <tbody>
-            <tr>
-                <td>teta teta</td>
-                <td>teta teta</td>
-                <td>teta teta</td>
-                <td>teta teta</td>
-                <td>teta teta</td>
-                <td>teta teta</td>
-                <td>teta teta</td>
-                <td>teta teta</td>
-            </tr>
-            <tr>
-                    <td>teta teta</td>
-                    <td>teta teta</td>
-                    <td>teta teta</td>
-                    <td>teta teta</td>
-                    <td>teta teta</td>
-                    <td>teta teta</td>
-                    <td>teta teta</td>
-                    <td>teta teta</td>
+            @foreach ($users as $user)
+                <tr>
+                    <td> {{ $user->id }} </td>
+                    <td> {{ $user->cpf }} </td>
+                    <td> {{ $user->name }} </td>
+                    <td> {{ $user->phone }} </td>
+                    <td> {{ $user->birth }} </td>
+                    <td> {{ $user->email }} </td>
+                    <td> {{ $user->status }} </td>
+                    <td> {{ $user->permission }} </td>
                 </tr>
-                <tr>
-                        <td>teta teta</td>
-                        <td>teta teta</td>
-                        <td>teta teta</td>
-                        <td>teta teta</td>
-                        <td>teta teta</td>
-                        <td>teta teta</td>
-                        <td>teta teta</td>
-                        <td>teta teta</td>
-                    </tr>
-                    <tr>
-                            <td>teta teta</td>
-                            <td>teta teta</td>
-                            <td>teta teta</td>
-                            <td>teta teta</td>
-                            <td>teta teta</td>
-                            <td>teta teta</td>
-                            <td>teta teta</td>
-                            <td>teta teta</td>
-                        </tr>
-                        <tr>
-                                <td>teta teta</td>
-                                <td>teta teta</td>
-                                <td>teta teta</td>
-                                <td>teta teta</td>
-                                <td>teta teta</td>
-                                <td>teta teta</td>
-                                <td>teta teta</td>
-                                <td>teta teta</td>
-                            </tr>
-                            <tr>
-                                    <td>teta teta</td>
-                                    <td>teta teta</td>
-                                    <td>teta teta</td>
-                                    <td>teta teta</td>
-                                    <td>teta teta</td>
-                                    <td>teta teta</td>
-                                    <td>teta teta</td>
-                                    <td>teta teta</td>
-                                </tr>
-                <tr>
-                        <td>teta teta</td>
-                        <td>teta teta</td>
-                        <td>teta teta</td>
-                        <td>teta teta</td>
-                        <td>teta teta</td>
-                        <td>teta teta</td>
-                        <td>teta teta</td>
-                        <td>teta teta</td>
-                    </tr>
-                    <tr>
-                            <td>teta teta</td>
-                            <td>teta teta</td>
-                            <td>teta teta</td>
-                            <td>teta teta</td>
-                            <td>teta teta</td>
-                            <td>teta teta</td>
-                            <td>teta teta</td>
-                            <td>teta teta</td>
-                        </tr>
-                        <tr>
-                                <td>teta teta</td>
-                                <td>teta teta</td>
-                                <td>teta teta</td>
-                                <td>teta teta</td>
-                                <td>teta teta</td>
-                                <td>teta teta</td>
-                                <td>teta teta</td>
-                                <td>teta teta</td>
-                            </tr>
-                            <tr>
-                                    <td>teta teta</td>
-                                    <td>teta teta</td>
-                                    <td>teta teta</td>
-                                    <td>teta teta</td>
-                                    <td>teta teta</td>
-                                    <td>teta teta</td>
-                                    <td>teta teta</td>
-                                    <td>teta teta</td>
-                                </tr>
-                                <tr>
-                                        <td>teta teta</td>
-                                        <td>teta teta</td>
-                                        <td>teta teta</td>
-                                        <td>teta teta</td>
-                                        <td>teta teta</td>
-                                        <td>teta teta</td>
-                                        <td>teta teta</td>
-                                        <td>teta teta</td>
-                                    </tr>
-                                    <tr>
-                                            <td>teta teta</td>
-                                            <td>teta teta</td>
-                                            <td>teta teta</td>
-                                            <td>teta teta</td>
-                                            <td>teta teta</td>
-                                            <td>teta teta</td>
-                                            <td>teta teta</td>
-                                            <td>teta teta</td>
-                                        </tr>
-                                        <tr>
-                                                <td>teta teta</td>
-                                                <td>teta teta</td>
-                                                <td>teta teta</td>
-                                                <td>teta teta</td>
-                                                <td>teta teta</td>
-                                                <td>teta teta</td>
-                                                <td>teta teta</td>
-                                                <td>teta teta</td>
-                                            </tr>
-                                            <tr>
-                                                    <td>teta teta</td>
-                                                    <td>teta teta</td>
-                                                    <td>teta teta</td>
-                                                    <td>teta teta</td>
-                                                    <td>teta teta</td>
-                                                    <td>teta teta</td>
-                                                    <td>teta teta</td>
-                                                    <td>teta teta</td>
-                                                </tr>
-                                                <tr>
-                                                        <td>teta teta</td>
-                                                        <td>teta teta</td>
-                                                        <td>teta teta</td>
-                                                        <td>teta teta</td>
-                                                        <td>teta teta</td>
-                                                        <td>teta teta</td>
-                                                        <td>teta teta</td>
-                                                        <td>teta teta</td>
-                                                    </tr>
-                                                    <tr>
-                                                            <td>teta teta</td>
-                                                            <td>teta teta</td>
-                                                            <td>teta teta</td>
-                                                            <td>teta teta</td>
-                                                            <td>teta teta</td>
-                                                            <td>teta teta</td>
-                                                            <td>teta teta</td>
-                                                            <td>teta teta</td>
-                                                        </tr>
+            @endforeach
         </tbody>
         
     </table>

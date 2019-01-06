@@ -29,25 +29,15 @@ class UsersController extends Controller
         $this->service      = $service;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return view('user.index');
+        $users = $this->repository->all();
+
+        return view('user.index', [
+            'users' => $users,
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  UserCreateRequest $request
-     *
-     * @return \Illuminate\Http\Response
-     *
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
-     */
     public function store(UserCreateRequest $request)
     {
         $request = $this->service->store($request->all());
