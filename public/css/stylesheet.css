@@ -252,3 +252,16 @@ table.default-table tbody tr:hover
 {
     background: #0d110f2a;
 }
+table.default-table tbody tr td form input
+{
+    width: 100%;
+    background: rgba(173, 10, 10, 0.212);
+    padding: 8px 0px;
+    color: #f9f9f9;
+}
+table.default-table tbody tr td form input:hover
+{
+    background: rgb(151, 3, 3);
+    padding: 8px 0px;
+    cursor:pointer;
+}
