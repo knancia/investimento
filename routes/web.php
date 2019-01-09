@@ -29,3 +29,4 @@ Route::get('/', function () {
 
 //  Route::get('/user', ['as' => 'user.index', 'uses' => 'UsersController@index']);
  Route::resource('user', 'UsersController');
+ Route::resource('instituition', 'InstituitionsController');
