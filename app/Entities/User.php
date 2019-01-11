@@ -39,7 +39,7 @@ class User extends Authenticatable
     public function getCpfAttribute()
     {
         $cpf = $this->attributes['cpf'];
-        return substr($cpf, 0, 3). "." .substr($cpf, 3, 3). "." .substr($cpf, 7, 3). "-" .substr($cpf, -2);
+        return substr($cpf, 0, 3). "." .substr($cpf, 3, 3). "." .substr($cpf, 6, 3). "-" .substr($cpf, -2);
     }
 
     /**
