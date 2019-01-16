@@ -2,34 +2,34 @@
 
 namespace App\Services;
 
-use App\Repositories\UserRepository;
-use App\Validators\UserValidator;
+use App\Repositories\GroupRepository;
+use App\Validators\GroupValidator;
 use Prettus\Validator\Contracts\ValidatorInterface;
 
-class UserService
+class GroupService
 {
     private $repository;
     private $validator;
 
-    public function __construct(UserRepository $repository, UserValidator $validator)
+    public function __construct(GroupRepository $repository, GroupValidator $validator)
     {
-        $this->repository   = $repository;
-        $this->validator    = $validator;
+        $this->repository = $repository;
+        $this->validator = $validator;
     }
 
-    public function store($data)
+    public function store(array $data)
     {
         $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
-        $usuario = $this->repository->create($data);
+        $group = $this->repository->create($data);
 
         try 
-        {           
-            return[
-                'success'   => false,
-                'messages'  => 'Usuario Cadastrado',
-                'data'      => $usuario,
+        {
+            return [
+                'success'   => true,
+                'messages'  => 'Grupo Cadastrado',
+                'data'      => $group,
             ];
-        } 
+        }
         catch (\Exception $e) 
         {
             return[
@@ -39,8 +39,6 @@ class UserService
         }
     }
 
-    public function update(){}
-
     public function destroy($user_id)
     {
         try 
@@ -49,7 +47,7 @@ class UserService
             
             return[
                 'success'   => false,
-                'messages'  => 'Usuario Removido',
+                'messages'  => 'Instituição Removida',
                 'data'      => null,
             ];
         } 
@@ -61,5 +59,4 @@ class UserService
             ];
         }
     }
-
 }

@@ -20,19 +20,21 @@ use App\Services\UserService;
  */
 class UsersController extends Controller
 {
-    protected $service;
     protected $repository;
+    protected $validator;
+    protected $service;
 
-    public function __construct(UserRepository $repository, UserService $service)
+    public function __construct(UserRepository $repository, UserValidator $validator, UserService $service)
     {
         $this->repository   = $repository;
+        $this->validator    = $validator;
         $this->service      = $service;
     }
 
     public function index()
     {
         $users = $this->repository->all();
-
+        
         return view('user.index', [
             'users' => $users,
         ]);
@@ -42,15 +44,13 @@ class UsersController extends Controller
     {
         $request = $this->service->store($request->all());
         $usuario = $request['success'] ? $request['data'] : null;
-
+        
         session()->flash('success', [
             'success'   => $request['success'],
             'messages'  => $request['messages'],
         ]);
                 
-        return view('user.index', [
-            'usuario' => $usuario,
-        ]);
+        return redirect()->route('user.index');
     }
 
     /**

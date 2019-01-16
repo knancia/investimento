@@ -11,6 +11,13 @@ use App\Http\Requests\GroupCreateRequest;
 use App\Http\Requests\GroupUpdateRequest;
 use App\Repositories\GroupRepository;
 use App\Validators\GroupValidator;
+use App\Services\GroupService;
+
+/**
+ * Select view, Repository
+ */
+use App\Repositories\InstituitionRepository;
+use App\Repositories\UserRepository;
 
 /**
  * Class GroupsController.
@@ -19,86 +26,45 @@ use App\Validators\GroupValidator;
  */
 class GroupsController extends Controller
 {
-    /**
-     * @var GroupRepository
-     */
     protected $repository;
-
-    /**
-     * @var GroupValidator
-     */
     protected $validator;
+    protected $service;
+    protected $InstituitionRepository;
+    protected $UserRepository;
 
-    /**
-     * GroupsController constructor.
-     *
-     * @param GroupRepository $repository
-     * @param GroupValidator $validator
-     */
-    public function __construct(GroupRepository $repository, GroupValidator $validator)
+    public function __construct(GroupRepository $repository, GroupValidator $validator, GroupService $service, InstituitionRepository $InstituitionRepository, UserRepository $UserRepository)
     {
-        $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->repository               = $repository;
+        $this->validator                = $validator;
+        $this->service                  = $service;
+        $this->instituitionRepository   = $InstituitionRepository;
+        $this->userRepository           = $UserRepository;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $groups = $this->repository->all();
+        $instituition_list = $this->instituitionRepository->selectBoxList();
+        $user_list = $this->userRepository->selectBoxList();
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $groups,
-            ]);
-        }
-
-        return view('groups.index', compact('groups'));
+        return view('group.index', [
+            'groups' => $groups,
+            'user_list' => $user_list,
+            'instituition_list' => $instituition_list,
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  GroupCreateRequest $request
-     *
-     * @return \Illuminate\Http\Response
-     *
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
-     */
     public function store(GroupCreateRequest $request)
     {
-        try {
+        $request    = $this->service->store($request->all());
+        $group      = $request['success'] ? $request['data'] : null;
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+        session()->flash('success', [
+            'success'   => $request['success'],
+            'messages'  => $request['messages'],
+        ]);
 
-            $group = $this->repository->create($request->all());
-
-            $response = [
-                'message' => 'Group created.',
-                'data'    => $group->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+        return redirect()->route('group.index');
     }
 
     /**
@@ -189,16 +155,13 @@ class GroupsController extends Controller
      */
     public function destroy($id)
     {
-        $deleted = $this->repository->delete($id);
+        $request = $this->service->destroy($id);
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'message' => 'Group deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
-
-        return redirect()->back()->with('message', 'Group deleted.');
+        session()->flash('success', [
+            'success'   => $request['success'],
+            'messages'  => $request['messages'],
+        ]);
+                
+        return redirect()->route('group.index');
     }
 }

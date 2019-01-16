@@ -20,6 +20,10 @@ use App\Services\InstituitionService;
  */
 class InstituitionsController extends Controller
 {
+    protected $repository;
+    protected $validator;
+    protected $service;
+    
     public function __construct(InstituitionRepository $repository, InstituitionValidator $validator, InstituitionService $service)
     {
         $this->repository   = $repository;
@@ -130,16 +134,13 @@ class InstituitionsController extends Controller
      */
     public function destroy($id)
     {
-        $deleted = $this->repository->delete($id);
+        $request = $this->service->destroy($id);
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'message' => 'Instituition deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
-
-        return redirect()->back()->with('message', 'Instituition deleted.');
+        session()->flash('success', [
+            'success'   => $request['success'],
+            'messages'  => $request['messages'],
+        ]);
+                
+        return redirect()->route('instituition.index');
     }
 }

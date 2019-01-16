@@ -9,6 +9,8 @@ use Prettus\Repository\Traits\TransformableTrait;
 /**
  * Class Instituition.
  *
+ * 
+ * 
  * @package namespace App\Entities;
  */
 class Instituition extends Model implements Transformable
