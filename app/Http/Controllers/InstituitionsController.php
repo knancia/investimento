@@ -56,15 +56,10 @@ class InstituitionsController extends Controller
     public function show($id)
     {
         $instituition = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $instituition,
-            ]);
-        }
-
-        return view('instituitions.show', compact('instituition'));
+        
+        return view('instituitions.show', [
+            'instituition' => $instituition,
+        ]);
     }
 
     /**

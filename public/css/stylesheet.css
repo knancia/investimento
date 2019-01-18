@@ -229,6 +229,7 @@ table.default-table
     padding: 10px;
     font: 400 .9em 'Arial';
     text-align: center;
+    box-shadow: 5px 5px #e9e9e9;   
 }
 table.default-table thead tr
 {
@@ -255,13 +256,32 @@ table.default-table tbody tr:hover
 table.default-table tbody tr td form input
 {
     width: 100%;
-    background: rgba(173, 10, 10, 0.212);
+    /* background: rgba(173, 10, 10, 0.212); */
+    background: transparent;
     padding: 8px 0px;
-    color: #f9f9f9;
+    
 }
 table.default-table tbody tr td form input:hover
 {
     background: rgb(151, 3, 3);
     padding: 8px 0px;
     cursor:pointer;
+    color: #f9f9f9;
+}
+table.default-table tbody tr td a.detalhes
+{
+    float: left;
+    width: 100%;
+    /* background: rgba(173, 10, 10, 0.212); */
+    background: transparent;
+    padding: 8px 0px;
+    text-decoration: none;
+    color: black;
+}
+table.default-table tbody tr td a.detalhes:hover
+{
+    background: rgba(12, 3, 92, 0.822);
+    padding: 8px 0px;
+    cursor:pointer;
+    color: #f9f9f9;
 }
