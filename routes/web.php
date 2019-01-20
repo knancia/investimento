@@ -26,8 +26,8 @@ Route::get('/', function () {
  Route::get('/login', ['uses' => 'Controller@fazerLogin']);
  Route::post('/login', ['as' => 'user.login', 'uses' => 'DashboardController@auth']);
  Route::get('/dashboard', ['as' => 'user.dashboard', 'uses' => 'DashboardController@index']);
+ Route::post('group/{group_id}/user', ['as' => 'group.user.store', 'uses' => 'GroupsController@userStore']); //
 
-//  Route::get('/user', ['as' => 'user.index', 'uses' => 'UsersController@index']);
  Route::resource('user', 'UsersController');
  Route::resource('instituition', 'InstituitionsController');
  Route::resource('group', 'GroupsController');

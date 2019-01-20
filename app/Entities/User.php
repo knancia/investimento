@@ -28,6 +28,12 @@ class User extends Authenticatable
      */
     protected   $hidden         = ['password', 'remember_token',];
 
+    public function groups()
+    {
+        // RELACIONAMENTO N:N
+        return $this->belongsToMany(Groups::class, 'user_groups');
+    }
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = env('PASSWORD_HASH') ? bcrypt($value) : $value;
@@ -36,48 +42,48 @@ class User extends Authenticatable
     /**
      * Mascara CPF para VIEW
      */
-    // public function getCpfAttribute()
-    // {
-    //     $cpf = $this->attributes['cpf'];
-    //     return substr($cpf, 0, 3). "." .substr($cpf, 3, 3). "." .substr($cpf, 6, 3). "-" .substr($cpf, -2);
-    // }
+    public function getFormattedCpfAttribute()
+    {
+        $cpf = $this->attributes['cpf'];
+        return substr($cpf, 0, 3). "." .substr($cpf, 3, 3). "." .substr($cpf, 6, 3). "-" .substr($cpf, -2);
+    }
 
     /**
      * Mascara Telefone para VIEW
      */
-    // public function getPhoneAttribute()
-    // {
-    //     $phone = $this->attributes['phone'];
+    public function getFormattedPhoneAttribute()
+    {
+        $phone = $this->attributes['phone'];
 
-    //     if (strlen($phone) == 10)
-    //     {
-    //         return "(" .substr($phone, 0, 2). ") " .substr($phone, 2, 4). "-" .substr($phone, 6, 4);
-    //     }
-    //     elseif (strlen($phone) > 10)
-    //     {
-    //         return "(" .substr($phone, 0, 2). ") " .substr($phone, 2, 5). "-" .substr($phone, 7, 4);
-    //     }
-    //     else
-    //     {
-    //         return "Não Informado";
-    //     }
-    // }
+        if (strlen($phone) == 10)
+        {
+            return "(" .substr($phone, 0, 2). ") " .substr($phone, 2, 4). "-" .substr($phone, 6, 4);
+        }
+        elseif (strlen($phone) > 10)
+        {
+            return "(" .substr($phone, 0, 2). ") " .substr($phone, 2, 5). "-" .substr($phone, 7, 4);
+        }
+        else
+        {
+            return "Não Informado";
+        }
+    }
 
     /**
      * Mascara Data de Nascimento para a VIEW
      */
-    // public function getBirthAttribute()
-    // {
-    //     $birth = explode("-", $this->attributes['birth']);
-    //     if (count($birth) == 3)
-    //     {
-    //         return $birth = $birth[2]. "/" .$birth[1]. "/" .$birth[0];
-    //     }
-    //     else
-    //     {
-    //         return "Não Informado";
-    //     }
-    // }
+    public function getFormattedBirthAttribute()
+    {
+        $birth = explode("-", $this->attributes['birth']);
+        if (count($birth) == 3)
+        {
+            return $birth = $birth[2]. "/" .$birth[1]. "/" .$birth[0];
+        }
+        else
+        {
+            return "Não Informado";
+        }
+    }
 }
 
 

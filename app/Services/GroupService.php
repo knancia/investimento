@@ -19,14 +19,37 @@ class GroupService
 
     public function store(array $data)
     {
-        $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
-        $group = $this->repository->create($data);
-
         try 
         {
+            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
+            $group = $this->repository->create($data);
             return [
                 'success'   => true,
                 'messages'  => 'Grupo Cadastrado',
+                'data'      => $group,
+            ];
+        }
+        catch (\Exception $e) 
+        {
+            return[
+                'success'   => false,
+                'messages'  => $e->getMessage(),
+            ];
+        }
+    }
+
+    public function userStore($group_id, $data)
+    {
+        try 
+        {
+            $group      = $this->repository->find($group_id);
+            $user_id    = $data['user_id'];
+
+            $group->user()->attach($user_id);
+
+            return [
+                'success'   => true,
+                'messages'  => 'Usuário relacionado com sucesso!',
                 'data'      => $group,
             ];
         }
