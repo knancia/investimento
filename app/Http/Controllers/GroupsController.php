@@ -43,9 +43,9 @@ class GroupsController extends Controller
 
     public function index()
     {
-        $groups = $this->repository->all();
-        $instituition_list = $this->instituitionRepository->selectBoxList();
-        $user_list = $this->userRepository->selectBoxList();
+        $groups             = $this->repository->all();
+        $instituition_list  = $this->instituitionRepository->selectBoxList();
+        $user_list          = $this->userRepository->selectBoxList();
 
         return view('group.index', [
             'groups' => $groups,
@@ -106,9 +106,15 @@ class GroupsController extends Controller
      */
     public function edit($id)
     {
-        $group = $this->repository->find($id);
+        $group              = $this->repository->find($id);
+        $user_list          = $this->userRepository->selectBoxList(); 
+        $instituition_list  = $this->instituitionRepository->selectBoxList();
 
-        return view('groups.edit', compact('group'));
+        return view('group.edit', [
+            'group'             => $group,
+            'user_list'         => $user_list,
+            'instituition_list' => $instituition_list,
+        ]);
     }
 
     /**
@@ -123,35 +129,15 @@ class GroupsController extends Controller
      */
     public function update(GroupUpdateRequest $request, $id)
     {
-        try {
+        $request    = $this->service->update($request->all(), $id);
+        $group      = $request['success'] ? $request['data'] : null;
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
+        session()->flash('success', [
+            'success'   => $request['success'],
+            'messages'  => $request['messages'],
+        ]);
 
-            $group = $this->repository->update($request->all(), $id);
-
-            $response = [
-                'message' => 'Group updated.',
-                'data'    => $group->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+        return redirect()->route('group.index');
     }
 
 

@@ -285,3 +285,20 @@ table.default-table tbody tr td a.detalhes:hover
     cursor:pointer;
     color: #f9f9f9;
 }
+table.default-table tbody tr td a.editar
+{
+    float: left;
+    width: 100%;
+    /* background: rgba(173, 10, 10, 0.212); */
+    background: transparent;
+    padding: 8px 0px;
+    text-decoration: none;
+    color: black;
+}
+table.default-table tbody tr td a.editar:hover
+{
+    background: rgb(27, 177, 77);
+    padding: 8px 0px;
+    cursor:pointer;
+    color: #f9f9f9;
+}

@@ -19,13 +19,13 @@ class UserService
 
     public function store($data)
     {
-        $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
-        $usuario = $this->repository->create($data);
-
         try 
         {           
+            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
+            $usuario = $this->repository->create($data);
+
             return[
-                'success'   => false,
+                'success'   => true,
                 'messages'  => 'Usuario Cadastrado',
                 'data'      => $usuario,
             ];
@@ -39,7 +39,27 @@ class UserService
         }
     }
 
-    public function update(){}
+    public function update($data, $id)
+    {
+        try 
+        {           
+            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+            $usuario = $this->repository->update($data, $id);
+
+            return[
+                'success'   => true,
+                'messages'  => 'Usuario Atualizado',
+                'data'      => $usuario,
+            ];
+        } 
+        catch (\Exception $e) 
+        {
+            return[
+                'success'   => false,
+                'messages'  => $e->getMessage(),
+            ];
+        }
+    }
 
     public function destroy($user_id)
     {
@@ -48,7 +68,7 @@ class UserService
             $this->repository->delete($user_id);
             
             return[
-                'success'   => false,
+                'success'   => true,
                 'messages'  => 'Usuario Removido',
                 'data'      => null,
             ];

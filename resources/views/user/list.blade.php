@@ -10,6 +10,7 @@
                 <td>E-mail</td>
                 <td>Status</td>
                 <td>Permissão</td>
+                <td>Editar</td>
                 <td>Excluir</td>
             </tr>
         </thead>
@@ -18,13 +19,16 @@
             @foreach ($user_list as $user)
                 <tr>
                     <td> {{ $user->id }} </td>
-                    <td> {{ $user->cpf }} </td>
+                    <td> {{ $user->FormattedCpf }} </td>
                     <td> {{ $user->name }} </td>
-                    <td> {{ $user->phone }} </td>
-                    <td> {{ $user->birth }} </td>
+                    <td> {{ $user->Formattedphone }} </td>
+                    <td> {{ $user->Formattedbirth }} </td>
                     <td> {{ $user->email }} </td>
                     <td> {{ $user->status }} </td>
                     <td> {{ $user->permission }} </td>
+                    <td>
+                        <a class="editar" href="{{ route('user.edit', $user->id) }}">Editar</a>
+                    </td>
                     <td>
                         {!! Form::open(['route' => ['user.destroy', $user->id], 'method' => 'DELETE']) !!}
                             {!! Form::submit('Excluir') !!}

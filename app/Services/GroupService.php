@@ -69,11 +69,32 @@ class GroupService
             $this->repository->delete($user_id);
             
             return[
-                'success'   => false,
+                'success'   => true,
                 'messages'  => 'Instituição Removida',
                 'data'      => null,
             ];
         } 
+        catch (\Exception $e) 
+        {
+            return[
+                'success'   => false,
+                'messages'  => $e->getMessage(),
+            ];
+        }
+    }
+
+    public function update($data, $id)
+    {
+        try 
+        {
+            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+            $group = $this->repository->update($data, $id);
+            return [
+                'success'   => true,
+                'messages'  => 'Grupo Editado',
+                'data'      => $group,
+            ];
+        }
         catch (\Exception $e) 
         {
             return[

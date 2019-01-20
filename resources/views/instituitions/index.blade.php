@@ -20,6 +20,7 @@
             <td>#</td>
             <td>Nome da Instituição</td>
             <td>Detalhes</td>
+            <td>Editar</td>
             <td>Excluir</td>
         </tr>
     </thead>
@@ -31,6 +32,9 @@
                 <td> {{ $instituicao->name }} </td>
                 <td>
                     <a class="detalhes" href="{{ route('instituition.show', $instituicao->id) }}">Detalhes</a>
+                </td>
+                <td>
+                    <a class="editar" href="{{ route('instituition.edit', $instituicao->id) }}">Editar</a>
                 </td>
                 <td>
                     {!! Form::open(['route' => ['instituition.destroy', $instituicao->id], 'method' => 'DELETE']) !!}

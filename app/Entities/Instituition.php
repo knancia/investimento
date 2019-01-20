@@ -5,6 +5,9 @@ namespace App\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
+
 
 /**
  * Class Instituition.
@@ -16,14 +19,18 @@ use Prettus\Repository\Traits\TransformableTrait;
 class Instituition extends Model implements Transformable
 {
     use TransformableTrait;
+    use SoftDeletes; //Aparece somente na video aula
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected   $fillable       = ['name'];
     public      $timestamps     = true;
+    protected   $table          = 'instituitions';
+    protected   $fillable       = ['name'];
+
 
     public function groups()
     {

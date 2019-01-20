@@ -19,11 +19,11 @@ class InstituitionService
 
     public function store(array $data)
     {
-        $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
-        $instituition = $this->repository->create($data);
-
         try 
         {
+            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
+            $instituition = $this->repository->create($data);
+
             return [
                 'success'   => true,
                 'messages'  => 'Instituição Cadastrada',
@@ -46,11 +46,33 @@ class InstituitionService
             $this->repository->delete($user_id);
             
             return[
-                'success'   => false,
+                'success'   => true,
                 'messages'  => 'Instituição Removida',
                 'data'      => null,
             ];
         } 
+        catch (\Exception $e) 
+        {
+            return[
+                'success'   => false,
+                'messages'  => $e->getMessage(),
+            ];
+        }
+    }
+
+    public function update($data, $id)
+    {
+        try 
+        {
+            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+            $instituition = $this->repository->update($data, $id);
+            
+            return [
+                'success'   => true,
+                'messages'  => 'Instituição Atualizada',
+                'data'      => $instituition,
+            ];
+        }
         catch (\Exception $e) 
         {
             return[

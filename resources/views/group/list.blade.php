@@ -7,6 +7,7 @@
                 <td>Instituição</td>
                 <td>Usuário</td>
                 <td>Detalhes</td>
+                <td>Editar</td>
                 <td>Excluir</td>
             </tr>
         </thead>
@@ -20,6 +21,9 @@
                     <td> {{ $group->owner->name }} </td>
                     <td>
                         <a class="detalhes" href="{{ route('group.show', $group->id) }}">Detalhes</a>
+                    </td>
+                    <td>
+                        <a class="editar" href="{{ route('group.edit', $group->id) }}">Editar</a>
                     </td>
                     <td>
                         {!! Form::open(['route' => ['group.destroy', $group->id], 'method' => 'DELETE']) !!}
