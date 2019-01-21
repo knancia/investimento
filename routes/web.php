@@ -31,3 +31,4 @@ Route::get('/', function () {
  Route::resource('user', 'UsersController');
  Route::resource('instituition', 'InstituitionsController');
  Route::resource('group', 'GroupsController');
+ Route::resource('instituition.product', 'productsController');
