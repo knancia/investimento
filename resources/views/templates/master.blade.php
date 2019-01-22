@@ -7,7 +7,7 @@
     <title>Investindo</title>
     <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fredoka+One">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     @yield('css-view')
 </head>
 <body>
