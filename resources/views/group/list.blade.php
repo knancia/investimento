@@ -6,6 +6,7 @@
                 <td>Nome do Grupo</td>
                 <td>Instituição</td>
                 <td>Usuário</td>
+                <td>Investimento do Grupo</td>
                 <td>Detalhes</td>
                 <td>Editar</td>
                 <td>Excluir</td>
@@ -19,6 +20,7 @@
                     <td> {{ $group->name }} </td>
                     <td> {{ $group->instituition->name }} </td>
                     <td> {{ $group->owner->name }} </td>
+                    <td>R$ {{ number_format($group->total_value, 2, ',', '.') }}</td>
                     <td>
                         <a class="detalhes" href="{{ route('group.show', $group->id) }}">Detalhes</a>
                     </td>

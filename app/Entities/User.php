@@ -31,7 +31,7 @@ class User extends Authenticatable
     public function groups()
     {
         // RELACIONAMENTO N:N
-        return $this->belongsToMany(Groups::class, 'user_groups');
+        return $this->belongsToMany(Group::class, 'user_groups');
     }
 
     public function setPasswordAttribute($value)
