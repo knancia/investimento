@@ -28,6 +28,11 @@ class User extends Authenticatable
      */
     protected   $hidden         = ['password', 'remember_token',];
 
+    public function moviments()
+    {
+        return $this->hasMany(Moviment::class);
+    }
+
     public function groups()
     {
         // RELACIONAMENTO N:N

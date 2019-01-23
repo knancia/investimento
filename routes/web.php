@@ -27,9 +27,14 @@ Route::get('/', function () {
  Route::post('/login', ['as' => 'user.login', 'uses' => 'DashboardController@auth']);
  Route::get('/dashboard', ['as' => 'user.dashboard', 'uses' => 'DashboardController@index']);
  Route::post('group/{group_id}/user', ['as' => 'group.user.store', 'uses' => 'GroupsController@userStore']); //
- Route::get('moviment', ['as' => 'moviment.application', 'uses' => 'MovimentsController@application']);
+ Route::get('investir', ['as' => 'moviment.application', 'uses' => 'MovimentsController@application']);
  Route::post('moviment', ['as' => 'moviment.application.store', 'uses' => 'MovimentsController@storeApplication']);
- Route::get('application', ['as' => 'moviment.index', 'uses' => 'MovimentsController@index']);
+ Route::get('aplicacao', ['as' => 'moviment.index', 'uses' => 'MovimentsController@index']);
+ Route::get('resgatar', ['as' => 'moviment.getback', 'uses' => 'MovimentsController@getback']);
+ Route::post('resgatar', ['as' => 'moviment.getback.store', 'uses' => 'MovimentsController@storeGetback']);
+
+
+ Route::get('extrato', ['as' => 'moviment.all', 'uses' => 'MovimentsController@all']);
  Route::resource('user', 'UsersController');
  Route::resource('instituition', 'InstituitionsController');
  Route::resource('group', 'GroupsController');

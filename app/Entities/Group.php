@@ -14,7 +14,7 @@ class Group extends Model implements Transformable
 
     public function getTotalValueAttribute()
     {
-        return $this->moviments->sum('value');
+        return $this->moviments()->where('type', 1)->sum('value') - $this->moviments()->where('type', 2)->sum('value');
     }
 
     public function owner()
